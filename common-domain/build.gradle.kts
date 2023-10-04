@@ -1,25 +1,19 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("dagger.hilt.android.plugin")
     kotlin("kapt")
 }
 
 android {
-    namespace = "com.fahad.project.x_i"
+    namespace = "com.fahad.project.common_domain"
     compileSdk = Plateform.compileSdk
 
     defaultConfig {
-        applicationId = "com.fahad.project.x_i"
         minSdk = Plateform.minSdk
-        targetSdk = Plateform.targetSdk
-        versionCode = Plateform.versionCode
-        versionName = Plateform.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -38,26 +32,12 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
 }
 
 dependencies {
     baseLifecycle()
-    compose()
-    hilt()
     kotlinCoroutines()
-
-    common()
+    hilt()
 
     junit()
     kotlinCoroutinesTest()

@@ -15,4 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "super-app-xi"
 include(":launcher")
- 
+include(":common")
+include(":common-data")
+include(":common-domain")

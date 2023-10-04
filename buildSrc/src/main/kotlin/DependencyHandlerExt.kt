@@ -9,6 +9,14 @@ fun DependencyHandler.implementation(dependency: Dependency) {
     add("implementation", dependency)
 }
 
+fun DependencyHandler.api(dependency: String) {
+    add("api", dependency)
+}
+
+fun DependencyHandler.api(dependency: Dependency) {
+    add("api", dependency)
+}
+
 fun DependencyHandler.test(dependency: String) {
     add("test", dependency)
 }
