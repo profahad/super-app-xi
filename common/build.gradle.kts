@@ -1,8 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("dagger.hilt.android.plugin")
     kotlin("kapt")
+    id("dagger.hilt.android.plugin") //  apply false
 }
 
 android {
@@ -25,6 +25,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -34,12 +35,17 @@ android {
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
+    }
 }
 
 dependencies {
+    applyCoreLibraryDesugaring()
     baseLifecycle()
     compose()
     hilt()
+    workManager()
     kotlinCoroutines()
 
     apiCommonData()

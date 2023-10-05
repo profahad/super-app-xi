@@ -1,3 +1,4 @@
+import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.project
 
@@ -43,8 +44,15 @@ object Dependencies {
 
     // Hilt
     const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
-    const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+    const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+    //const val hiltAndroidCompiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
     const val hiltAgp = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
+
+    const val hiltWorkManager = "androidx.hilt:hilt-work:${Versions.hiltWorkManager}"
+    const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltCompiler}"
+
+    // Worker + Hilt
+    const val androidxWorkManager = "androidx.work:work-runtime-ktx:${Versions.androidxWorkManager}"
 
 
     // OkHttp
@@ -83,6 +91,7 @@ object Dependencies {
     const val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val kotlinSerializationCore = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinSerialization}"
     const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
+    const val desugaringLibrary = "com.android.tools:desugar_jdk_libs:${Versions.desugaringLibrary}"
 }
 
 fun DependencyHandler.room() {
@@ -133,8 +142,15 @@ fun DependencyHandler.junit() {
 
 fun DependencyHandler.hilt() {
     implementation(Dependencies.hiltAndroid)
-    kapt(Dependencies.hiltCompiler)
+    kapt(Dependencies.hiltAndroidCompiler)
 }
+
+fun DependencyHandler.workManager() {
+    implementation(Dependencies.hiltWorkManager)
+    kapt(Dependencies.hiltCompiler)
+    implementation(Dependencies.androidxWorkManager)
+}
+
 
 fun DependencyHandler.coreMaterial() {
     implementation(Dependencies.appCompat)
@@ -179,4 +195,8 @@ fun DependencyHandler.apiCommonDomain() {
 }
 fun DependencyHandler.commonDomain() {
     implementation(project(":common-domain"))
+}
+
+fun DependencyHandler.`applyCoreLibraryDesugaring`() {
+    add("coreLibraryDesugaring", Dependencies.desugaringLibrary)
 }
