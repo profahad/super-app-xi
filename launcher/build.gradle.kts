@@ -7,14 +7,14 @@ plugins {
 
 android {
     namespace = "com.fahad.project.x_i"
-    compileSdk = Plateform.compileSdk
+    compileSdk = Platform.compileSdk
 
     defaultConfig {
         applicationId = "com.fahad.project.x_i"
-        minSdk = Plateform.minSdk
-        targetSdk = Plateform.targetSdk
-        versionCode = Plateform.versionCode
-        versionName = Plateform.versionName
+        minSdk = Platform.minSdk
+        targetSdk = Platform.targetSdk
+        versionCode = Platform.versionCode
+        versionName = Platform.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -33,11 +33,11 @@ android {
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = Platform.sourceJavaVersion
+        targetCompatibility = Platform.targetJavaVersion
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = Platform.jvmTarget
     }
     buildFeatures {
         compose = true

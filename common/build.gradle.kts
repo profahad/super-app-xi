@@ -7,10 +7,10 @@ plugins {
 
 android {
     namespace = "com.fahad.project.common"
-    compileSdk = Plateform.compileSdk
+    compileSdk = Platform.compileSdk
 
     defaultConfig {
-        minSdk = Plateform.minSdk
+        minSdk = Platform.minSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -26,11 +26,11 @@ android {
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = Platform.sourceJavaVersion
+        targetCompatibility = Platform.targetJavaVersion
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = Platform.jvmTarget
     }
     buildFeatures {
         compose = true
